@@ -49,9 +49,13 @@ class InteractiveRecord
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM (#{self.table_name_for_insert})")[0][0]
   end
 
-  def self.find_by_name(named)
-    sql = "SELECT * FROM #{self.table_name} WHERE name = #{named}"
+  def self.find_by_name(name)
+    sql = "SELECT * FROM #{self.table_name} WHERE name = #{name}"
     #binding.pry
     DB[:conn].execute(sql)
+  end
+
+  def self.find_by(attribute)
+    sql = "SELECT * FROM #{self.table_name} WHERE '#{attribute}' = #{attribute}"
   end
 end
