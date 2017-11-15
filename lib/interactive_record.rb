@@ -59,7 +59,7 @@ class InteractiveRecord
 
   def self.find_by(attribute)
     sql = "SELECT * FROM #{self.table_name} WHERE #{attribute.flatten[0]} = ?"
-    #$binding.pry
+    #binding.pry
     DB[:conn].execute(sql, attribute.flatten[1])
   end
 end
